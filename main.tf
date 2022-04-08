@@ -11,7 +11,7 @@ module "rg" {
 # Networking
 
 module "vnet" {
-  source = "github.com/cbuxton1984/terraform_modules/vnet"
+  source = "github.com/dnbowers/terraform_modules-maindemo/vnet"
   vnet_name = "${var.rg_name}-${var.vnet_name}"
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
@@ -20,7 +20,7 @@ module "vnet" {
 }
 
 module "subnet" {
-  source = "github.com/cbuxton1984/terraform_modules/subnet"
+  source = "github.com/dnbowers/terraform_modules-maindemo/subnet"
   subnet_name = "${var.rg_name}-${var.vnet_name}-${var.subnet_name}"
   vnet_name = module.vnet.vnet_name
   rg_name = module.rg.rg_name
@@ -29,7 +29,7 @@ module "subnet" {
 
 module "publicip2019" {
   count = 2
-  source = "github.com/cbuxton1984/terraform_modules/public_ip"
+  source = "github.com/dnbowers/terraform_modules-maindemo/public_ip"
   pi_name = "Win2K19-demo-publicip-${count.index}"
   allocation_method = "Static"
   location = module.rg.rg_location
@@ -38,7 +38,7 @@ module "publicip2019" {
 }
 
 module "publicip2016" {
-  source = "github.com/cbuxton1984/terraform_modules/public_ip"
+  source = "github.com/dnbowers/terraform_modules-maindemo/public_ip"
   pi_name = "Win2K16-publicip"
   allocation_method = "Static"
   location = module.rg.rg_location
@@ -47,7 +47,7 @@ module "publicip2016" {
 }
 
 module "publiciprhel" {
-  source = "github.com/cbuxton1984/terraform_modules/public_ip"
+  source = "github.com/dnbowers/terraform_modules-maindemo/public_ip"
   pi_name = "rhel76-demo-publicip"
   allocation_method = "Static"
   location = module.rg.rg_location
@@ -59,7 +59,7 @@ module "publiciprhel" {
 # Workspaces
 
 module "log_analytics" {
-  source = "github.com/cbuxton1984/terraform_modules/log_analytics"
+  source = "github.com/dnbowers/terraform_modules-maindemo/log_analytics"
   la_name = var.la_name
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
@@ -69,7 +69,7 @@ module "log_analytics" {
 }
 
 module "automation_account" {
-  source = "github.com/cbuxton1984/terraform_modules/automation_account"
+  source = "github.com/dnbowers/terraform_modules-maindemo/automation_account"
   aa_name = var.aa_name
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
@@ -79,7 +79,7 @@ module "automation_account" {
 }
 
 module "updatemanagement" {
-  source = "github.com/cbuxton1984/terraform_modules/updatemanagement"
+  source = "github.com/dnbowers/terraform_modules-maindemo/updatemanagement"
   solution_name = var.um_solution_name
   location = var.location
   rg_name = var.rg_name
@@ -91,7 +91,7 @@ module "updatemanagement" {
 
 module "windows_vm_2019" {
   count = 2
-  source ="github.com/cbuxton1984/terraform_modules/win_vm_with_la_agent"
+  source ="github.com/dnbowers/terraform_modules-maindemo/win_vm_with_la_agent"
   vm_name = "win2k19-demo-${count.index + 1}"
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
@@ -109,7 +109,7 @@ module "windows_vm_2019" {
 }
 
 module "windows_vm_2016" {
-  source ="github.com/cbuxton1984/terraform_modules/win_vm_with_la_agent"
+  source ="github.com/dnbowers/terraform_modules-maindemo/win_vm_with_la_agent"
   vm_name = "win2k16-demo-1"
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
@@ -127,7 +127,7 @@ module "windows_vm_2016" {
 }
 
 module "rhel_vm" {
-  source ="github.com/cbuxton1984/terraform_modules/rhel_vm_with_la_agent"
+  source ="github.com/dnbowers/terraform_modules-maindemo/rhel_vm_with_la_agent"
   vm_name = "cb-rhel-1"
   location = module.rg.rg_location
   rg_name = module.rg.rg_name
