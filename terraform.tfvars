@@ -43,5 +43,5 @@ um_solution_name = "UpdateMgmt-demo"
 
 # Credentials
 
-vm_user = "DBAdmin"
-vm_pass = "Ou09zud2038!"
+admuser = "DBAdmin"
+admpass = "Ou09zud2038!"
